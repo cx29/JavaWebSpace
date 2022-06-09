@@ -1,4 +1,4 @@
-package com.example.control;
+package com.example.demo.control;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.dao.impl.TicketsDaoImpl;
@@ -18,7 +18,7 @@ public class Control {
     @Test
     public void test2(){
         UserDaoImpl userDao = new UserDaoImpl();
-        Result modify = userDao.modify(1, "123");
+        Result modify = userDao.modify("1", "123");
         System.out.println(JSON.toJSONString(modify));
     }
 //    用户管理

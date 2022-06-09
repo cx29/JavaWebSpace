@@ -14,12 +14,15 @@ public class UserDaoImpl implements UserDao {
         List<HashMap<String, String>> query = JDBCUtils.query(sql);
         Result result = new Result();
         result.setFlag("fail");
+        result.setData("邮箱不存在");
         if (!query.isEmpty()) {
             for (int i = 0; i < query.size(); i++) {
                 String password = query.get(i).get("Password");
                 if (pwd.equals(password)) {
                     result.setFlag("success");
                     result.setData(query.get(i));
+                } else {
+                    result.setData("密码错误");
                 }
             }
         }
@@ -27,8 +30,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Result modify(Integer i, String pwd) {
-        String sql = "UPDATE users SET Password='" + pwd + "' WHERE UserId='" + i + "'";
+    public Result modify(String i, String pwd) {
+        String sql = "UPDATE users SET Password='" + pwd + "' WHERE UserId=" + i + "";
         Integer update = JDBCUtils.update(sql);
         Result result = new Result();
         result.setFlag("fail");
@@ -74,5 +77,19 @@ public class UserDaoImpl implements UserDao {
         }
         return result;
     }
+
+    @Override
+    public Result searchUsr(String email) {
+        String sql = "SELECT * FROM users WHERE Email='" + email + "'";
+        List<HashMap<String, String>> query = JDBCUtils.query(sql);
+        Result result = new Result();
+        result.setFlag("fail");
+        if (!query.isEmpty()) {
+            result.setFlag("success");
+            result.setData(query);
+        }
+        return result;
+    }
+
 
 }

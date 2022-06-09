@@ -11,7 +11,7 @@ public class TicketsDaoImpl implements TicketsDao {
     @Override
     public Result selectTickets(String start, String end) {
         String sql = "SELECT\n" +
-                "\tCONCAT(year( date ),\"-\",IF(month(date)<10,CONCAT(\"0\",month(date)),month(date))) month,\n" +
+                "\tCONCAT(year( date ),\"-\",IF(month(date)<10,CONCAT(\"0\",month(date)),month(date))) M    onth,\n" +
                 "\tCOUNT( DISTINCT s.ScheduleId) FlightsAmount,\n" +
                 "\tCOUNT(f.ReservationId) TicketsAmount,\n" +
                 "\tSUM(f.Payment) TicketsRevenue\n" +
