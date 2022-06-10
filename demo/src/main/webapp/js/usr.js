@@ -14,7 +14,17 @@ function search(roleId, name, startPage) {
         }
     })
 }
-
+function pageTurn(btnName, operatNum) {
+    let roleId = $('.roleId').val();
+    let name = $(".userName").val();
+    let startPage = 1;
+    switch (operatNum) {
+        case 1: {
+            startPage = 1;
+            search(roleId, name, startPage);
+        } break;
+    }
+}
 $(function () {
     let roleId = 0;
     let name = "";
