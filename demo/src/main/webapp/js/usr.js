@@ -23,6 +23,22 @@ function pageTurn(btnName, operatNum) {
             startPage = 1;
             search(roleId, name, startPage);
         } break;
+        case 2:{
+            startPage -=1;
+            if(startPage==0){
+                alert("已经是第一页了！");
+            }else{
+                search(roleId, name, startPage);
+            }
+        }break;
+        case 3:{
+            startPage +=1;
+            if(startPage==0){
+                alert("已经是第一页了！");
+            }else{
+                search(roleId, name, startPage);
+            }
+        }
     }
 }
 $(function () {

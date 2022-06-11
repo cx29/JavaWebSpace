@@ -45,10 +45,19 @@ public class UserDaoImpl implements UserDao {
     public Result selectAll(String start, String name, String role) {
         int startPage = (Integer.parseInt(start) - 1) * 10;
         String sql = "";
-        if (role.equals("0"))
+        if (role.equals("0")) {
+            if (startPage == -1) {
+                String sql0 = "SELECT COUNT(*) FROM users WHERE (FirstName like '%" + name + "%' or LastName like '%" + name + "%')";
+                List<HashMap<String, String>> total = JDBCUtils.query(sql0);
+            }
             sql = "SELECT * FROM users WHERE (FirstName like '%" + name + "%' or LastName like '%" + name + "%') limit " + startPage + ",10";
-        else
+        } else {
+            if (startPage == -1) {
+                String sql0 = "SELECT COUNT(*) FROM users WHERE roleId=" + role + " AND (FirstName like '%" + name + "%' or LastName like '%" + name + "%')";
+                List<HashMap<String, String>> total = JDBCUtils.query(sql0);
+            }
             sql = "SELECT * FROM users WHERE roleId=" + role + " AND (FirstName like '%" + name + "%' or LastName like '%" + name + "%') limit " + startPage + ",10";
+        }
         System.out.println(sql);
         List<HashMap<String, String>> query = JDBCUtils.query(sql);
         Result result = new Result();
