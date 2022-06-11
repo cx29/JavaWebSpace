@@ -2,6 +2,7 @@ package com.example.demo.dao.impl;
 
 import com.example.demo.dao.UserDao;
 import com.example.demo.domain.Result;
+import com.example.demo.domain.Results;
 import com.example.demo.utils.JDBCUtils;
 
 import java.util.HashMap;
@@ -41,30 +42,42 @@ public class UserDaoImpl implements UserDao {
         return result;
     }
 
+    public List<HashMap<String, String>> page(String sql, String start) {
+        List<HashMap<String, String>> total = JDBCUtils.query(sql);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("pageSize", "10");
+        map.put("startPage", start);
+        total.add(map);
+        return total;
+    }
+
     @Override
-    public Result selectAll(String start, String name, String role) {
+    public Results selectAll(String start, String name, String role) {
         int startPage = (Integer.parseInt(start) - 1) * 10;
-        String sql = "";
+        String sql = " ";
+        String sql0 = " ";
+        List<HashMap<String, String>> total = null;
         if (role.equals("0")) {
-            if (startPage == -1) {
-                String sql0 = "SELECT COUNT(*) FROM users WHERE (FirstName like '%" + name + "%' or LastName like '%" + name + "%')";
-                List<HashMap<String, String>> total = JDBCUtils.query(sql0);
+            if (startPage == 0) {
+                sql0 = "SELECT COUNT(*) total FROM users WHERE (FirstName like '%" + name + "%' or LastName like '%" + name + "%')";
+                total = page(sql0, start);
             }
             sql = "SELECT * FROM users WHERE (FirstName like '%" + name + "%' or LastName like '%" + name + "%') limit " + startPage + ",10";
         } else {
-            if (startPage == -1) {
-                String sql0 = "SELECT COUNT(*) FROM users WHERE roleId=" + role + " AND (FirstName like '%" + name + "%' or LastName like '%" + name + "%')";
-                List<HashMap<String, String>> total = JDBCUtils.query(sql0);
+            if (startPage == 0) {
+                sql0 = "SELECT COUNT(*) total FROM users WHERE roleId=" + role + " AND (FirstName like '%" + name + "%' or LastName like '%" + name + "%')";
+                total = page(sql0, start);
             }
             sql = "SELECT * FROM users WHERE roleId=" + role + " AND (FirstName like '%" + name + "%' or LastName like '%" + name + "%') limit " + startPage + ",10";
         }
-        System.out.println(sql);
+        System.out.println(sql0);
         List<HashMap<String, String>> query = JDBCUtils.query(sql);
-        Result result = new Result();
+        Results result = new Results();
         result.setFlag("fail");
         if (!query.isEmpty()) {
             result.setFlag("success");
             result.setData(query);
+            result.setPages(total);
         }
         return result;
     }

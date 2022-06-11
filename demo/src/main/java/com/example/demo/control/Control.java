@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.demo.dao.impl.TicketsDaoImpl;
 import com.example.demo.dao.impl.UserDaoImpl;
 import com.example.demo.domain.Result;
+import com.example.demo.domain.Results;
 import org.junit.Test;
 
 public class Control {
@@ -25,7 +26,7 @@ public class Control {
     @Test
     public void test3(){
         UserDaoImpl dao = new UserDaoImpl();
-        Result result = dao.selectAll("2","","0");
+        Results result = dao.selectAll("1", "", "0");
         System.out.println(JSON.toJSONString(result));
     }
 //    添加用户

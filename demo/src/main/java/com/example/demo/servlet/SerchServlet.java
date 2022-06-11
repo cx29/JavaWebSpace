@@ -2,7 +2,7 @@ package com.example.demo.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.dao.impl.UserDaoImpl;
-import com.example.demo.domain.Result;
+import com.example.demo.domain.Results;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +26,7 @@ public class SerchServlet extends HttpServlet {
         String name = request.getParameter("name");
         String startPage = request.getParameter("startPage");
         UserDaoImpl userDao = new UserDaoImpl();
-        Result result = userDao.selectAll(startPage, name, roleId);
+        Results result = userDao.selectAll(startPage, name, roleId);
         response.getWriter().write(JSON.toJSONString(result));
     }
 }
