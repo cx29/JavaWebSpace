@@ -70,7 +70,6 @@ public class UserDaoImpl implements UserDao {
             }
             sql = "SELECT * FROM users WHERE roleId=" + role + " AND (FirstName like '%" + name + "%' or LastName like '%" + name + "%') limit " + startPage + ",10";
         }
-        System.out.println(sql0);
         List<HashMap<String, String>> query = JDBCUtils.query(sql);
         Results result = new Results();
         result.setFlag("fail");

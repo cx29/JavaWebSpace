@@ -30,9 +30,15 @@ public class AddUserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String photo = request.getParameter("photo");
         String address = request.getParameter("address");
+        System.out.println(photo);
         String roleId = request.getParameter("roleId");
         UserDaoImpl userDao = new UserDaoImpl();
-        Result result = userDao.insertUser(email, firstName, lastName, gender, dateOfBirth, phone, photo, address, roleId);
+        Result result1 = userDao.searchUsr(email);
+        Result result = new Result();
+        result.setData("邮箱重复了！");
+        result.setFlag("fail");
+        if (result1.getFlag().equals("fail"))
+            result = userDao.insertUser(email, firstName, lastName, gender, dateOfBirth, phone, photo, address, roleId);
         response.getWriter().write(JSON.toJSONString(result));
     }
 }

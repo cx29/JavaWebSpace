@@ -92,7 +92,7 @@ $(function () {
     $(".step-forward").click(function () {
         pageTurn(4);
     });
-    $(".pageSelect").blur(function () {
+    $(".pageSelect").change(function () {
         let currentPage = $(".pageSelect").val();
         search(roleId, name, currentPage);
     })
