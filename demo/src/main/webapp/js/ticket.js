@@ -14,7 +14,7 @@ $(function () {
     });
     $(".stat").click(function () {
         let start = $(".startDate").val();
-        let end = $(".endtDate").val();
+        let end = $(".endDate").val();
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/SunshineAirlines/getTicketStatistics?startDate=" + start + "&endDate=" + end,
