@@ -14,7 +14,7 @@ public class JDBCUtils {
 
     static {
         try {
-            drivers = "com.mysql.cj.jdbc.Drivers";
+            drivers = "com.mysql.cj.jdbc.Driver";
             url = "jdbc:mysql://localhost:3306/subject?serverTimezone=UTC";
             user = "root";
             pwd = "123456";
@@ -31,10 +31,10 @@ public class JDBCUtils {
         return con;
     }
 
-    private static void close(Connection con, Statement stat, ResultSet rs) {
+    private static void close(Connection conn, Statement stat, ResultSet rs) {
         try {
-            if (con != null) {
-                con.close();
+            if (conn != null) {
+                conn.close();
             }
         } catch (Exception e) {
         }
@@ -53,7 +53,7 @@ public class JDBCUtils {
     }
 
     public static List<HashMap<String, String>> query(String sql) {
-        Connection con1 = getCon();
+        Connection con1 = JDBCUtils.getCon();
         List<HashMap<String, String>> list = new ArrayList<>();
         try {
             Statement statement = con1.createStatement();
@@ -75,7 +75,7 @@ public class JDBCUtils {
     }
 
     public static Integer update(String sql) {
-        Connection con1 = getCon();
+        Connection con1 = JDBCUtils.getCon();
         int i = 0;
         try {
             Statement statement = con1.createStatement();

@@ -11,7 +11,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Result queryQuestion() {
-        String sql="SELECT a.id a,q.id q,q.name,a.value,a.YorN FROM quesion q LEFT JOIN answer a on q.id = a.quesionid";
+        String sql="SELECT a.id a,q.id q,q.name,a.value,a.YorN FROM question q LEFT JOIN answer a on q.id = a.questionId";
         List<HashMap<String, String>> query = JDBCUtils.query(sql);
         Result result = new Result();
         result.setFlag("fail");
