@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.jupitertn</groupId>
-    <artifactId>Subject</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>subject</artifactId>
+    <version>1</version>
     <name>Subject</name>
     <packaging>war</packaging>
 
@@ -45,6 +45,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.29</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
         </dependency>
 
     </dependencies>

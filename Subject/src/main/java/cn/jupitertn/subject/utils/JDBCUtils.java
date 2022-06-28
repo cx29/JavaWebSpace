@@ -16,8 +16,8 @@ public class JDBCUtils {
         try {
             drivers = "com.mysql.cj.jdbc.Driver";
             url = "jdbc:mysql://localhost:3306/subject?serverTimezone=UTC";
-            user = "root";
-            pwd = "123456";
+            user = "subject";
+            pwd = "";
             Class.forName(drivers);
         } catch (Exception e) {
         }

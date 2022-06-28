@@ -1,13 +1,104 @@
-*{
-    padding: 0;
+* {
     margin: 0;
+    padding: 0;
 }
-.qu{
+
+body {
+    background-color: rgba(0,0,0,.9);
+    position: relative;
+    overflow: hidden;
+}
+
+.f-box {
     width: 100%;
     height: 100vh;
-    background-color: pink;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+
+    .item {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .list {
+            width: 30vh;
+            height: 50vh;
+            overflow: hidden;
+
+            .q-box1,
+            .q-box2,
+            .q-box3,
+            .q-box4,
+            .q-box5 {
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                font-size: 20px;
+                align-items: center;
+                justify-content: center;
+
+                .title {
+                    width: 485px;
+                    font-size: 24px;
+                    height: auto;
+                    margin: 10px;
+                    line-height: 50px;
+                    word-wrap: break-word;
+                    white-space: pre-line;
+                }
+
+                .answer-list {
+                    width: 70%;
+
+                    li {
+                        margin: 20px;
+                        display: flex;
+                        align-items: flex-start;
+
+                        input {
+                            float: left;
+                        }
+
+                        label {
+                            width: 200px;
+                            word-wrap: break-word;
+                            white-space: pre-line;
+                        }
+                    }
+                }
+            }
+            .box1{
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                font-size: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        .tip {
+            font-size: 30px;
+            margin: 20px;
+        }
+
+        .btn-box {
+            width: auto;
+            margin: 20px;
+
+            button {
+                width: 100px;
+                height: 50px;
+                margin: 20px;
+            }
+        }
+
+    }
 }

@@ -9,14 +9,16 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "getQuestionServlet", value = "/getQuestionServlet")
+@WebServlet(name = "getQuestionServlet", value = "/getq")
 public class getQuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
+        String start = request.getParameter("start");
+        System.out.println(start);
         QuestionServiceImpl service = new QuestionServiceImpl();
-        Result result = service.queryQuestion();
+        Result result = service.queryQuestion(start);
         response.getWriter().write(JSON.toJSONString(result));
     }
 
